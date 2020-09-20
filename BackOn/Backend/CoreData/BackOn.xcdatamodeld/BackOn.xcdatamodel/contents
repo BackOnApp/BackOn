@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19G2021" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="LoggedUser" representedClassName="LoggedUser" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastModified" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="surname" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Request" representedClassName=".Request" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lastModified" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="helper" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="requested" inverseEntity="User"/>
+    </entity>
+    <entity name="Task" representedClassName=".Task" syncable="YES">
+        <attribute name="address" attributeType="String"/>
+        <attribute name="darkMapSnapData" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="descr" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="lastModified" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="lightMapSnapData" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="needer" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="accepted" inverseEntity="User"/>
+    </entity>
+    <entity name="User" representedClassName=".User" syncable="YES">
+        <attribute name="email" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="lastModified" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="surname" optional="YES" attributeType="String"/>
+        <relationship name="accepted" toMany="YES" deletionRule="Deny" destinationEntity="Task" inverseName="needer" inverseEntity="Task"/>
+        <relationship name="requested" toMany="YES" deletionRule="Deny" destinationEntity="Request" inverseName="helper" inverseEntity="Request"/>
+    </entity>
+    <elements>
+        <element name="LoggedUser" positionX="-45" positionY="36" width="128" height="148"/>
+        <element name="Request" positionX="-477" positionY="162" width="128" height="178"/>
+        <element name="Task" positionX="-671.9765625" positionY="20.36328125" width="128" height="208"/>
+        <element name="User" positionX="-269.03125" positionY="291.82421875" width="150.8984375" height="178"/>
+    </elements>
+</model>
