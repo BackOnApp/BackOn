@@ -54,55 +54,6 @@ struct TaskView: View {
     }
 }
 
-struct TaskViewOLD: View {
-    @Environment(\.colorScheme) var colorScheme
-    let task: Task
-    let needer: User
-    @State var showModal = false
-    @State var showLoadingOverlay = false
-
-    var body: some View {
-        Button(action: {self.showModal.toggle()}) {
-            ZStack (alignment: .bottom){
-                task.matchingSnap(colorScheme: colorScheme)
-                VStack(spacing: 0) {
-                    ZStack {
-                        Image("cAnnotation").orange().offset(y: -5).scaleEffect(0.97)
-                        needer.avatar(size: 50).offset(y: -9.65)
-                    }.scaleEffect(1.2)
-                    Text(needer.name)
-                        .fontWeight(.medium)
-                        .orange()
-                        .background(Rectangle().cornerRadius(13).tint(.white).shadow(radius: 5).scaleEffect(1.4))
-                        .offset(y: 3)
-                }
-                .offset(y: -160)
-                VStack(spacing: 5) {
-                    Text(task.title)
-                        .fontWeight(.medium)
-                        .font(.system(size: 24))
-                        .tint(.white)
-                    Text("\(task.date, formatter: customDateFormat)")
-                        .tint(.grayLabel)
-                        .padding(.horizontal, 10)
-                        .frame(width: 320, alignment: .trailing)
-                        .offset(y: 1)
-                }
-                .frame(width: 320, height: 75)
-                .backgroundIf(task.isExpired(), .expiredNeed, .need)
-                .cornerRadius(10)
-            }
-            .frame(width: 320, height: 350)
-            .loadingOverlayIf(.constant(showLoadingOverlay))
-            .cornerRadius(10)
-            .shadow(color: Color(.systemGray3), radius: 3)
-        }
-        .buttonStyle(PlainButtonStyle())
-        .sheet(isPresented: self.$showModal) { DetailedView(need: task, user: needer, isDiscoverSheet: false) }
-        .onReceive(task.objectWillChange) {_ in self.showLoadingOverlay = task.waitingForServerResponse}
-    }
-}
-
 struct TaskRow: View {
     @ObservedObject var cdc = CD.controller
     
