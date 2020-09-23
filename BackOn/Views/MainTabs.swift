@@ -14,9 +14,8 @@ struct DashboardTab: View {
     var body: some View {
         return NavigationView {
             VStack {
-                SizedDivider(height: 5)
-                TaskRow()
-                RequestRow()
+                TaskRow().frame(height: 430)
+                RequestRow().frame(height: 180)
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)

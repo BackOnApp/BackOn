@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 import UIKit
 
-struct OpaqueButtonStyle: ButtonStyle {
+struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .overlay(configuration.isPressed ? AnyView(Color.gray.opacity(0.1)) : AnyView(EmptyView()) )
-            //.blur(radius: configuration.isPressed ? 2 : 0)
+//            .frame(minWidth: 0, maxWidth: .infinity)
+//            .overlay(configuration.isPressed ? AnyView(Color.gray.opacity(0.1)) : AnyView(EmptyView()))
+            .blur(radius: configuration.isPressed ? 2 : 0)
     }
 }
 
 extension Button {
-    func opaqueButtonStyle() -> some View {
-        return self.buttonStyle(OpaqueButtonStyle())
+    func customButtonStyle() -> some View {
+        return self.buttonStyle(CustomButtonStyle())
     }
 }
 

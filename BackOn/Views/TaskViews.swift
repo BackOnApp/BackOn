@@ -22,7 +22,7 @@ struct TaskView: View {
                 Group {
                     ZStack(alignment: .bottom) {
                         Image("cAnnotation").resizable().scaledToFit().orange()
-                        needer.avatar(size: 60).offset(y: -15.15)
+                        needer.avatar(size: 60).offset(y: -15.5)
                     }.frame(width: 66)
                     Text(needer.name)
                         .font(.subheadline)
@@ -44,7 +44,7 @@ struct TaskView: View {
                 .cornerRadius(10)
             }
         }
-        .opaqueButtonStyle()
+        .customButtonStyle()
         .frame(width: 305, height: 350)
         .loadingOverlayIf(.constant(showLoadingOverlay))
         .cornerRadius(10)
@@ -108,5 +108,13 @@ struct TaskRow: View {
                 }
             }
         }
+    }
+}
+
+struct TaskView_Previews: PreviewProvider {
+    static var previews: some View {
+        let needer = User(entity: User.entity(), insertInto: nil).populate(email: "email", id: "iduser", name: "Name", surname: "Surname", phoneNumber: nil, lastModified: Date())
+        let task = Task(entity: Task.entity(), insertInto: nil).populate(id: "id", needer: needer, title: "Title", latitude: 12, longitude: 12, date: Date().advanced(by: 500), lastModified: Date())
+        TaskView(task: task, needer: needer)
     }
 }

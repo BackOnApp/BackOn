@@ -41,14 +41,14 @@ struct RequestView<GenericUser:BaseUser>: View {
                 .loadingOverlayIf(.constant(showLoadingOverlay))
                 .cornerRadius(10)
                 .shadow(color: Color(.systemGray3), radius: 3)
-                .offset(x: 40)
-                helper.avatar(size: 80)
+                .offset(x: 39)
+                helper.avatar(size: 78)
                     .blackOverlayIf(.constant(showLoadingOverlay), opacity: 0.1)
                     .clipShape(Circle())
                     .shadow(color: Color(.systemGray3), radius: 3)
             }.frame(width: 305, height: 106)
         }
-        .opaqueButtonStyle()
+        .customButtonStyle()
         .sheet(isPresented: self.$showModal) { DetailedView(need: request, user: helper, isDiscoverSheet: false) }
         .onReceive(request.objectWillChange) {_ in self.showLoadingOverlay = request.waitingForServerResponse}
     }
@@ -102,9 +102,15 @@ struct RequestRow: View {
                         }
                     }
                     .padding(.vertical, 10)
-//                    .padding(.horizontal, 20)
                 }
             }
         }
+    }
+}
+
+struct RequestView_Previews: PreviewProvider {
+    static var previews: some View {
+        let req = Request(entity: Request.entity, insertInto: nil).populate(id: "test", title: "Title", latitude: 12, longitude: 12, date: Date().advanced(by: 500))
+        RequestView(request: req, helper: NobodyAccepted.instance)
     }
 }

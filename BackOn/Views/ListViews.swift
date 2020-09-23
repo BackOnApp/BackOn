@@ -84,7 +84,7 @@ struct NeedList<Content:Need>: View {
                             NeedPreview(need: current, user: NobodyAccepted.instance)
                         }
                     }
-                    .opaqueButtonStyle()
+                    .customButtonStyle()
                 }
                 if !activeNeeds.isEmpty && !expiredNeeds.isEmpty {
                     Divider()
@@ -100,7 +100,7 @@ struct NeedList<Content:Need>: View {
                             NeedPreview(need: current, user: NobodyAccepted.instance)
                         }
                     }
-                    .opaqueButtonStyle()
+                    .customButtonStyle()
                 }
             }
             .navigationTitle(navTitle)

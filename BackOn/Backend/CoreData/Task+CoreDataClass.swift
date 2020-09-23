@@ -11,6 +11,8 @@ import CoreData
 import CoreLocation
 import SwiftUI
 
+
+
 @objc(Task)
 public class Task: NSManagedObject, Need {
     public override var description: String {return "    Request  #\(id)\n         of  #\(needer.id)\naccepted by me\n"}
@@ -52,7 +54,7 @@ public class Task: NSManagedObject, Need {
         return city!
     }()
     
-    func matchingSnap(colorScheme: ColorScheme, width: CGFloat = 320, height: CGFloat = 350) -> some View {
+    func matchingSnap(colorScheme: ColorScheme, width: CGFloat = 305, height: CGFloat = 350) -> some View {
         if colorScheme == .dark {
             return Image(mapSnapData: darkMapSnapData).resizable().frame(width: width, height: height).scaledToFill()
         } else {

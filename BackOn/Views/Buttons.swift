@@ -55,7 +55,7 @@ struct CloseButton: View {
             }
         }){
             Image(systemName: "xmark.circle.fill").font(.largeTitle).tint(.white).opacity(0.9)
-        }.opaqueButtonStyle()
+        }.customButtonStyle()
     }
 }
 
@@ -262,7 +262,7 @@ struct DirectionsButton<Element:Need>: View {
             .backgroundIf(isFilled, .detailedTaskHeaderBG, .systemBG)
             .cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(!isFilled ? getColor(.detailedTaskHeaderBG) : Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)), lineWidth: 1))
-        }.opaqueButtonStyle()
+        }.customButtonStyle()
     }
 }
 
@@ -318,7 +318,7 @@ struct CallButton: View {
             .background(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0))).cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(disabledCondition ? Color(.systemRed) : Color(.systemGreen), lineWidth: 1))
         }
-        .opaqueButtonStyle()
+        .customButtonStyle()
         .disabled(disabledCondition)
     }
 }
@@ -348,6 +348,6 @@ struct GenericButton: View {
             .frame(width: isLarge ? dimensions.width*2 : dimensions.width, height: dimensions.height)
             .background(isFilled ? color : Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0))).cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(!isFilled ? color : Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)), lineWidth: 1))
-        }.opaqueButtonStyle()
+        }.customButtonStyle()
     }
 }
